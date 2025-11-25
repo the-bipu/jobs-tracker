@@ -14,7 +14,6 @@ import { toast } from "sonner";
 import Loader from "@/components/common/Loader";
 import Link from "next/link";
 import SessionExist from "@/components/common/SessionExist";
-import Navbar from "@/components/common/Navbar";
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -79,6 +78,7 @@ const Login = () => {
             if (res?.url) router.replace("/");
         } else {
             setLoading(false);
+            toast.success("Logged In Succesfully!")
             if (forwardurl.url) {
                 router.push(`${forwardurl.url}`);
             }

@@ -1,19 +1,61 @@
 "use client";
-import React, { createContext, useState } from "react";
+
+import { useSession } from "next-auth/react";
+import React, { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [authenticated, setAuthenticated] = useState(false);
 
-  return (
-    <UserContext.Provider
-      value={{
-        loading,
-        setLoading,
-      }}
-    >
-      {children}
-    </UserContext.Provider>
-  );
+    const { data: session } = useSession();
+    const user = session?.user?.email || null;
+
+    const [userData, setUserData] = useState({});
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            if (!user) {
+                setLoading(false);
+                return;
+            }
+
+            setLoading(true);
+            if (user) {
+                try {
+                    const res = await fetch(
+                        `/api/users/email?email=${user}`
+                    );
+                    if (!res.ok) {
+                        throw new Error("Failed to fetch user details");
+                    }
+
+                    const userData = await res.json();
+                    setUserData(userData);
+                    setAuthenticated(true);
+                } catch (error) {
+                    console.error("Error fetching user data:", error);
+                } finally {
+                    setLoading(false);
+                }
+            }
+        };
+
+        fetchUserData();
+    }, [user]);
+
+    return (
+        <UserContext.Provider
+            value={{
+                loading,
+                setLoading,
+                authenticated,
+                setAuthenticated,
+                userData,
+            }}
+        >
+            {children}
+        </UserContext.Provider>
+    );
 };

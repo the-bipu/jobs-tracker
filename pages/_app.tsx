@@ -1,5 +1,3 @@
-// pages/_app.tsx
-
 import type { AppProps } from 'next/app'
 import { Metadata } from 'next'
 import '../app/globals.css'
