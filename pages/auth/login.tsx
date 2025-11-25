@@ -16,6 +16,8 @@ import Link from "next/link";
 import SessionExist from "@/components/common/SessionExist";
 import Navbar from "@/components/common/Navbar";
 
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+
 const Login = () => {
     const router = useRouter();
     const forwardurl = router.query;
@@ -94,13 +96,17 @@ const Login = () => {
 
             <div className="w-full md:fixed relative md:h-screen h-auto flex flex-col items-center justify-start md:overflow-hidden overflow-auto">
 
-                <Navbar />
-
                 {loading && <Loader />}
 
                 {sessionStatus !== "authenticated" ? (
-                    <div className="w-full flex-1 min-h-0 bg-white md:px-8 px-0 py-8 pt-0">
-                        <div className='bg-[#EDEBE9] w-full h-full flex flex-col items-center justify-center md:rounded-2xl rounded-none px-8 py-8 overflow-hidden'>
+                    <div className="w-full flex-1 min-h-0 bg-white md:px-6 px-0 py-6">
+                        <div className='bg-[#EDEBE9] w-full h-full flex flex-col items-center justify-center md:rounded-2xl rounded-none px-8 py-8 relative overflow-hidden'>
+
+                            <div className='absolute top-4 left-0 w-full h-auto flex flex-row items-center justify-between md:px-8 px-4 py-2'>
+                                <Link href='/'>Logo</Link>
+                                <Link href='/'>Home</Link>
+                            </div>
+
                             <main className="w-full flex flex-col row-start-2 items-center justify-center">
 
                                 <div className='md:w-[600px] w-full h-full flex flex-col justify-between'>
@@ -140,15 +146,29 @@ const Login = () => {
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-                                        <Button variant='default' onClick={() => { signIn("google"); }} className="w-full min-h-11 px-4 flex flex-row items-center justify-center gap-2 cursor-pointer">
-                                            <FaGoogle className="text-lg" />
-                                            Login with Google
-                                        </Button>
+                                        <Tooltip>
+                                            <TooltipTrigger asChild>
+                                                <Button variant='default' className="w-full min-h-11 px-4 flex flex-row items-center justify-center gap-2 cursor-pointer">
+                                                    <FaGoogle className="text-lg" />
+                                                    Login with Google
+                                                </Button>
+                                            </TooltipTrigger>
+                                            <TooltipContent>
+                                                <p>Add to library</p>
+                                            </TooltipContent>
+                                        </Tooltip>
 
-                                        <Button variant='default' onClick={() => { signIn("linkedin"); }} className="w-full min-h-11 px-4 flex flex-row items-center justify-center gap-2 cursor-pointer">
-                                            <LinkedInLogoIcon className="w-5 h-5" />
-                                            Login with LinkedIn
-                                        </Button>
+                                        <Tooltip>
+                                            <TooltipTrigger asChild>
+                                                <Button variant='default' className="w-full min-h-11 px-4 flex flex-row items-center justify-center gap-2 cursor-pointer">
+                                                    <LinkedInLogoIcon className="w-5 h-5" />
+                                                    Login with LinkedIn
+                                                </Button>
+                                            </TooltipTrigger>
+                                            <TooltipContent>
+                                                <p>Add to library</p>
+                                            </TooltipContent>
+                                        </Tooltip>
                                     </div>
 
                                     <div className='w-full text-center mt-4 flex items-center justify-center'>
