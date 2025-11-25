@@ -2,7 +2,10 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <div>Navbar</div>
+    <div className='w-full h-auto flex flex-row items-center justify-between md:px-8 px-4 py-2'>
+      <div>Navbar</div>
+      <div>Navbar</div>
+    </div>
   )
 }
 
