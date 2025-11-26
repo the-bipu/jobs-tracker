@@ -3,11 +3,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { signOut } from 'next-auth/react';
 import { UserContext } from '@/context/userContext';
-import { AvatarIcon, BackpackIcon, ExitIcon } from '@radix-ui/react-icons';
+import { AvatarIcon, BackpackIcon, ExitIcon, GlobeIcon } from '@radix-ui/react-icons';
 import { toast } from 'sonner';
 
 const Sidebar = () => {
-    const { activeTab, setActiveTab } = useContext(UserContext);
+    const { activeTab, setActiveTab, userData } = useContext(UserContext);
 
     const handleLogout = async () => {
         try {
@@ -42,6 +42,13 @@ const Sidebar = () => {
                         <BackpackIcon className='w-6 h-auto' />
                         <span>Jobs</span>
                     </div>
+
+                    {userData?.type === 'admin' && (
+                        <div onClick={() => setActiveTab("extra")} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-200 ${activeTab === 'extra' && 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-2 border-l-[#c1c1c1]'}`}>
+                            <GlobeIcon className='w-6 h-auto' />
+                            <span>Note</span>
+                        </div>
+                    )}
                 </div>
 
                 <div className={`text-[#606060] w-full flex flex-row gap-3 items-center justify-start text-lg rounded py-1 px-3 border border-[#1a1a1a] cursor-pointer transition-all duration-200 hover:text-white hover:border-white`}

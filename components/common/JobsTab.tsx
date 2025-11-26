@@ -50,6 +50,7 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import { BackpackIcon } from '@radix-ui/react-icons';
 
 const jobSchema = z.object({
     company: z.string().min(1),
@@ -515,9 +516,9 @@ const JobsTab = ({ userData }: any) => {
                         {jobs.length === 0 ? (
                             <Card>
                                 <CardContent className="flex flex-col items-center justify-center py-16">
-                                    <Briefcase className="h-16 w-16 text-muted-foreground mb-4" />
+                                    <BackpackIcon className="h-16 w-16 text-muted-foreground mb-2" />
                                     <h3 className="text-xl font-semibold mb-2">No job applications yet</h3>
-                                    <p className="text-muted-foreground mb-4">Start tracking your job search journey</p>
+                                    <p className="text-muted-foreground mb-5">Start tracking your job search journey</p>
                                     <Button onClick={() => setIsCreateDialogOpen(true)}>
                                         <Plus className="mr-2 h-4 w-4" />
                                         Add Your First Application

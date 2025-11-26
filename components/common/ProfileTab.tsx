@@ -110,7 +110,7 @@ const ProfileTab = ({ userData, fetchUserData }: ProfileTabProps) => {
                         </div>
                         <div>
                             <Label className="text-sm font-medium text-gray-500">Gender</Label>
-                            <p className="mt-1 text-sm text-gray-900">{userData.gender || 'Not provided'}</p>
+                            <p className="mt-1 text-sm text-gray-900 capitalize">{userData.gender || 'Not provided'}</p>
                         </div>
                         <div>
                             <Label className="text-sm font-medium text-gray-500">Member Since</Label>
