@@ -1,64 +1,131 @@
 # 🎯 JobTracker - Next.js Job Application Tracker
 
-A **modern and intuitive job application tracking system** built with **Next.js (App Router)**. Keep track of all your job applications, interviews, and follow-ups in one organized place.
+A **modern and intuitive job application tracking system** built with **Next.js (App Router)** and **MongoDB**. Keep track of all your job applications, interviews, and follow-ups in one organized place.
 
 ## 📂 Project Structure
 ```
-.
-├── app/                    # Next.js App Router pages
-│   ├── page.tsx           # Dashboard/Home page
-│   ├── applications/      # Application management pages
-│   ├── analytics/         # Application statistics & insights
-│   └── layout.tsx         # Root layout with navigation
-├── components/            # Reusable UI components
-│   ├── ApplicationCard.tsx
-│   ├── ApplicationForm.tsx
-│   ├── StatusBadge.tsx
-│   └── FilterBar.tsx
-├── context/               # React context providers
-│   └── ApplicationContext.tsx  # Global application state
-├── lib/                   # Utility functions, helpers
-│   ├── storage.ts        # Local storage utilities
-│   └── types.ts          # TypeScript type definitions
-├── public/                # Static assets (images, icons, etc.)
-├── styles/                # Global styles
-├── next.config.ts         # Next.js configuration
-├── tsconfig.json          # TypeScript configuration
-└── package.json
+jobs-tracker/
+├── app/                           # Next.js App Router
+│   ├── api/                       # API routes
+│   │   ├── auth/[...nextauth]/    # NextAuth authentication
+│   │   ├── jobs/                  # Job CRUD operations
+│   │   │   ├── [id]/
+│   │   │   ├── create/
+│   │   │   └── get/
+│   │   ├── register/
+│   │   └── users/
+│   │       ├── email/
+│   │       └── update/
+│   ├── auth/                      # Authentication pages
+│   │   ├── login.tsx
+│   │   └── register.tsx
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── not-found.tsx
+│   ├── _app.tsx
+│   ├── dashboard.tsx
+│   └── index.tsx
+├── components/                    # Reusable UI components
+│   ├── common/                    # Common components
+│   │   ├── AdminDashboard.tsx
+│   │   ├── ExtraTab.tsx
+│   │   ├── JobsTab.tsx
+│   │   ├── loader.css
+│   │   ├── Loader.tsx
+│   │   ├── Navbar.tsx
+│   │   ├── ProfileTab.tsx
+│   │   ├── SessionExist.tsx
+│   │   ├── Sidebar.tsx
+│   │   ├── Topbar.tsx
+│   │   └── UserDashboard.tsx
+│   └── ui/                        # UI primitives
+│       ├── alert-dialog.tsx
+│       ├── alert.tsx
+│       ├── button.tsx
+│       ├── card.tsx
+│       ├── checkbox.tsx
+│       ├── dialog.tsx
+│       ├── form.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── radio-group.tsx
+│       ├── select.tsx
+│       ├── separator.tsx
+│       ├── sonner.tsx
+│       ├── textarea.tsx
+│       └── tooltip.tsx
+├── context/                       # React Context
+│   └── userContext.js
+├── lib/                           # Utilities
+│   └── utils.ts
+├── models/                        # MongoDB models
+│   ├── job.ts
+│   └── user.ts
+├── pages/                         # Additional pages
+│   └── auth/
+│       ├── login.tsx
+│       ├── register.tsx
+│       ├── _app.tsx
+│       ├── dashboard.tsx
+│       └── index.tsx
+├── public/                        # Static assets
+│   ├── job-search.jpg
+│   ├── next.svg
+│   ├── profile.jpg
+│   ├── samsung.svg
+│   └── xbox.svg
+├── utils/                         # Utility functions
+│   └── mongodb.js
+├── .env
+├── .gitignore
+├── components.json
+├── global.d.ts
+├── LICENSE
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+└── tsconfig.json
 ```
 
 ## ⚡ Features
 
 * ✅ **Track unlimited job applications** with detailed information
-* ✅ **Application status management** (Applied, Interview, Offer, Rejected, etc.)
+* ✅ **User authentication** with NextAuth.js
+* ✅ **Application status management** across 11 different stages
+* ✅ **Advanced search & filter** by company and position
 * ✅ **Company & position details** tracking
-* ✅ **Interview scheduling** and follow-up reminders
-* ✅ **Analytics dashboard** with application statistics
-* ✅ **Filter & search** functionality
-* ✅ **Local storage persistence** - your data stays private
-* ✅ **Export applications** to CSV/JSON
-* ✅ **Responsive design** - works on mobile and desktop
-* ✅ **Dark mode support**
+* ✅ **Multiple application sources** (Campus, Referral, LinkedIn, etc.)
+* ✅ **Job type classification** (Full-time, Internship, Part-time, Contract, Remote)
+* ✅ **Resume version tracking** for different applications
+* ✅ **Follow-up date reminders**
+* ✅ **MongoDB database** for persistent storage
 
 ## 📋 Application Tracking Fields
 
 Each job application includes:
-- Company name & logo
-- Job title & position type (Full-time, Internship, etc.)
-- Application date & deadline
-- Current status (Applied, Phone Screen, Interview, Offer, Rejected)
-- Job posting URL
-- Contact person & recruiter info
-- Salary range (optional)
-- Notes & interview feedback
-- Follow-up dates
+- Company name
+- Job title/position
+- Application date (auto-generated)
+- Current status (11 different stages)
+- Salary range
+- Job type (Full-time, Internship, Part-time, Contract, Remote)
+- Job location
+- Reference/referral name
+- Company website
+- Application source (Campus, Referral, LinkedIn, Indeed, Company Website, HR Email, Other)
+- Personal notes
+- Resume version used
+- Follow-up date
 
 ## 🚀 Getting Started
 
 Clone the repo:
 ```bash
 git clone https://github.com/the-bipu/nextjs-starters.git
-cd nextjs-starters
+cd nextjs-starters/jobs-tracker
 ```
 
 Install dependencies:
@@ -68,6 +135,14 @@ npm install
 yarn install
 # or
 pnpm install
+```
+
+Set up environment variables:
+Create a `.env` file in the root directory:
+```env
+MONGODB_URI=your_mongodb_connection_string
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret
 ```
 
 Run the development server:
@@ -88,22 +163,19 @@ Open [http://localhost:3000](http://localhost:3000) to start tracking your appli
 
 ## 📊 Application Statuses
 
-The tracker supports the following application stages:
+The tracker supports the following application stages in sequential order:
 
-1. **Wishlist** - Companies you're interested in
-2. **Applied** - Application submitted
-3. **Phone Screen** - Initial phone interview scheduled
-4. **Interview** - On-site/virtual interview scheduled
-5. **Offer** - Job offer received
-6. **Accepted** - Offer accepted
-7. **Rejected** - Application declined
-8. **Withdrawn** - You withdrew your application
-
-## 💾 Data Storage
-
-All your application data is stored **locally in your browser** using localStorage. Your information never leaves your device, ensuring complete privacy.
-
-> **Note:** Clear your browser data carefully - this will delete your tracked applications. Consider using the export feature regularly to backup your data.
+1. **Applied** - Application submitted (default status)
+2. **HR Screening** - Initial HR screening/review
+3. **Interview Scheduled** - Interview date confirmed
+4. **Technical Round** - Technical assessment or interview
+5. **Managerial Round** - Interview with hiring manager
+6. **Offered** - Job offer received
+7. **Accepted** - Offer accepted
+8. **Joined** - Started working at the company
+9. **Rejected** - Application declined
+10. **Ghosted** - No response from company
+11. **Withdrawn** - You withdrew your application
 
 ## 📦 Deployment
 
@@ -116,29 +188,17 @@ Deploy your job tracker to:
 ### Quick Deploy to Vercel:
 1. Push your repo to GitHub
 2. Import into Vercel dashboard
-3. Deploy and start tracking! 🎉
+3. Add environment variables (MongoDB URI, NextAuth settings)
+4. Deploy and start tracking! 🎉
 
 ## 🎨 Customization
 
 Easily customize:
-- Application status categories
-- Color themes and branding
-- Additional tracking fields
-- Analytics metrics
-- Export formats
-
-## 📌 Roadmap
-
-- [x] Core application tracking
-- [x] Status management
-- [x] Basic analytics
-- [ ] Email reminders for follow-ups
-- [ ] Browser extension for one-click tracking
-- [ ] Integration with job boards (LinkedIn, Indeed, etc.)
-- [ ] Calendar sync for interviews
-- [ ] AI-powered application insights
-- [ ] Team/mentor sharing capabilities
-- [ ] Mobile app (React Native)
+- Application status categories in `models/job.ts`
+- Job types and application sources
+- UI components using shadcn/ui primitives
+- Authentication flow with NextAuth
+- Database schema in MongoDB models
 
 ## 🤝 Contributing
 
@@ -156,9 +216,10 @@ This project is licensed under the MIT License.
 
 - Track applications immediately after submitting
 - Set follow-up reminders for 1-2 weeks after applying
-- Keep detailed notes from interviews
+- Keep detailed notes from interviews in the notes field
 - Update status regularly to stay organized
-- Use analytics to identify patterns in your job search
+- Tag each application with the resume version used
+- Record referral names to follow up appropriately
 
 ---
 

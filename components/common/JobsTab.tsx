@@ -85,6 +85,9 @@ const JobsTab = ({ userData }: any) => {
     const [selectedJob, setSelectedJob] = useState<Job | null>(null);
     const [deleteJobId, setDeleteJobId] = useState<string | null>(null);
 
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
+
     const form = useForm<JobFormValues>({
         resolver: zodResolver(jobSchema),
         defaultValues: {
@@ -121,6 +124,7 @@ const JobsTab = ({ userData }: any) => {
             if (!response.ok) throw new Error('Failed to fetch jobs');
             const data = await response.json();
             setJobs(data);
+            setFilteredJobs(data);
         } catch (error) {
             toast.error('Failed to load jobs');
             console.error(error);
@@ -237,6 +241,20 @@ const JobsTab = ({ userData }: any) => {
             day: 'numeric',
         });
     };
+
+    useEffect(() => {
+        if (!searchQuery.trim()) {
+            setFilteredJobs(jobs);
+            return;
+        }
+
+        const query = searchQuery.toLowerCase();
+        const filtered = jobs.filter(job =>
+            job.company.toLowerCase().includes(query) ||
+            job.position.toLowerCase().includes(query)
+        );
+        setFilteredJobs(filtered);
+    }, [searchQuery, jobs]);
 
     const JobForm = ({ form, onSubmit, isEdit = false }: { form: any; onSubmit: any; isEdit?: boolean }) => (
         <Form {...form}>
@@ -512,6 +530,18 @@ const JobsTab = ({ userData }: any) => {
                     </Dialog>
                 </div>
                 <div className="space-y-4">
+                    <div className="flex items-center gap-4">
+                        <div className="relative flex-1 max-w-md">
+                            <Input
+                                type="text"
+                                placeholder="Search by company or position..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="pl-4"
+                            />
+                        </div>
+                    </div>
+
                     <div className="container mx-auto space-y-6">
                         {jobs.length === 0 ? (
                             <Card>
@@ -523,6 +553,14 @@ const JobsTab = ({ userData }: any) => {
                                         <Plus className="mr-2 h-4 w-4" />
                                         Add Your First Application
                                     </Button>
+                                </CardContent>
+                            </Card>
+                        ) : filteredJobs.length === 0 ? (
+                            <Card>
+                                <CardContent className="flex flex-col items-center justify-center py-16">
+                                    <BackpackIcon className="h-16 w-16 text-muted-foreground mb-2" />
+                                    <h3 className="text-xl font-semibold mb-2">No matching applications found</h3>
+                                    <p className="text-muted-foreground mb-5">Try adjusting your search terms</p>
                                 </CardContent>
                             </Card>
                         ) : (
@@ -543,7 +581,7 @@ const JobsTab = ({ userData }: any) => {
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y">
-                                            {jobs.map((job) => (
+                                            {filteredJobs.map((job) => (
                                                 <tr key={job._id} className="transition-colors">
                                                     <td className="px-4 py-3 text-sm font-medium">{job.position}</td>
                                                     <td className="px-4 py-3 text-sm text-muted-foreground">{job.company}</td>
