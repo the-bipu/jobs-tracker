@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import Image from 'next/image';
 import Head from 'next/head';
 import { UserContext } from '../context/userContext';
 import Loader from '@/components/common/Loader';
