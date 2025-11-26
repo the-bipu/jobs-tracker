@@ -8,40 +8,41 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [authenticated, setAuthenticated] = useState(false);
+    const [activeTab, setActiveTab] = useState("profile");
 
     const { data: session } = useSession();
     const user = session?.user?.email || null;
 
     const [userData, setUserData] = useState({});
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            if (!user) {
-                setLoading(false);
-                return;
-            }
+    const fetchUserData = async () => {
+        if (!user) {
+            setLoading(false);
+            return;
+        }
 
-            setLoading(true);
-            if (user) {
-                try {
-                    const res = await fetch(
-                        `/api/users/email?email=${user}`
-                    );
-                    if (!res.ok) {
-                        throw new Error("Failed to fetch user details");
-                    }
-
-                    const userData = await res.json();
-                    setUserData(userData);
-                    setAuthenticated(true);
-                } catch (error) {
-                    console.error("Error fetching user data:", error);
-                } finally {
-                    setLoading(false);
+        setLoading(true);
+        if (user) {
+            try {
+                const res = await fetch(
+                    `/api/users/email?email=${user}`
+                );
+                if (!res.ok) {
+                    throw new Error("Failed to fetch user details");
                 }
-            }
-        };
 
+                const userData = await res.json();
+                setUserData(userData);
+                setAuthenticated(true);
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+    };
+
+    useEffect(() => {
         fetchUserData();
     }, [user]);
 
@@ -53,6 +54,9 @@ export const UserProvider = ({ children }) => {
                 authenticated,
                 setAuthenticated,
                 userData,
+                activeTab,
+                setActiveTab,
+                fetchUserData,
             }}
         >
             {children}

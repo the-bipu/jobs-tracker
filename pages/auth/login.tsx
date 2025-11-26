@@ -16,6 +16,7 @@ import Link from "next/link";
 import SessionExist from "@/components/common/SessionExist";
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import Image from "next/image";
 
 const Login = () => {
     const router = useRouter();
@@ -103,8 +104,10 @@ const Login = () => {
                         <div className='bg-[#EDEBE9] w-full h-full flex flex-col items-center justify-center md:rounded-2xl rounded-none px-8 py-8 relative overflow-hidden'>
 
                             <div className='absolute top-4 left-0 w-full h-auto flex flex-row items-center justify-between md:px-8 px-4 py-2'>
-                                <Link href='/'>Logo</Link>
-                                <Link href='/'>Home</Link>
+                                <Link href='/' className='cursor-pointer'>
+                                    <Image src='/xbox.svg' alt='logo' width={200} height={80} className='md:w-28' />
+                                </Link>
+                                <Image src='/samsung.svg' alt='logo' width={200} height={80} className='md:w-28 cursor-pointer' />
                             </div>
 
                             <main className="w-full flex flex-col row-start-2 items-center justify-center">
