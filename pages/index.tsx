@@ -70,12 +70,12 @@ const Index = () => {
                                             variant={'greenry'} className='cursor-pointer'
                                         >
                                             <ExitIcon className='w-5 h-auto' />
-                                            Logout
+                                            <p className='md:flex hidden'>Logout</p>
                                         </Button>
                                         <Link href="/dashboard">
                                             <Button variant='yellowish' className='cursor-pointer'>
                                                 <DashboardIcon className='w-5 h-5' />
-                                                Dashboard
+                                                <p className='md:flex hidden'>Dashboard</p>
                                             </Button>
                                         </Link>
                                     </div>

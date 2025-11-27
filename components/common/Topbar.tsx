@@ -6,7 +6,7 @@ import { BellIcon, CaretDownIcon, Cross1Icon, GearIcon, HamburgerMenuIcon, Quest
 import Image from 'next/image';
 
 const Topbar = () => {
-    const { userData } = useContext(UserContext);
+    const { userData, sideBar, setSideBar } = useContext(UserContext);
 
     return (
         <div className='bg-[#1a1a1a] text-white py-2 md:px-12 px-6 shadow flex flex-row items-center justify-end'>
@@ -29,8 +29,12 @@ const Topbar = () => {
 
             </div>
 
-            <Button className='md:hidden flex bg-[#202123] rounded p-2 shadow-md hover:bg-[#3A3A3B] transition-all duration-200'>
-                <HamburgerMenuIcon className='w-6 h-6' />
+            <Button className='md:hidden flex bg-[#202123] rounded p-2 shadow-md hover:bg-[#3A3A3B] transition-all duration-200' onClick={() => setSideBar(!sideBar)}>
+                {!sideBar ? (
+                    <HamburgerMenuIcon className='w-6 h-6' />
+                ) : (
+                    <Cross1Icon className='w-6 h-6' />
+                )}
             </Button>
         </div>
     )
