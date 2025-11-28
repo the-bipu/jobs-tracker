@@ -2,7 +2,7 @@ import React from 'react'
 
 const ExtraTab = () => {
   return (
-    <div className='p-6 w-full h-full flex flex-col'>
+    <div className='p-5 w-full h-full flex flex-col overflow-y-auto'>
         <p className='text-base mb-3'>
             Note: If we consider every scenario in the login and registration flow, only then can we build a fully user-friendly application. However, since this is a simple assessment, we’ve kept it straightforward and easy to understand, while still maintaining clean and high-quality code.
         </p>

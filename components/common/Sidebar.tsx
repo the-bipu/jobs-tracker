@@ -34,18 +34,18 @@ const Sidebar = () => {
             <div className='mt-12 flex flex-col w-full h-full items-start justify-between'>
 
                 <div className='w-full h-full flex-1 flex flex-col gap-2'>
-                    <div onClick={() => { setActiveTab("profile"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-200 ${activeTab === 'profile' && 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-2 border-l-[#c1c1c1]'}`}>
+                    <div onClick={() => { setActiveTab("profile"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-300 border-l-2 ${activeTab === 'profile' ? 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-[#c1c1c1]' : 'border-l-[#1a1a1a]'}`}>
                         <AvatarIcon className='w-6 h-auto' />
                         <span>Profile</span>
                     </div>
 
-                    <div onClick={() => { setActiveTab("jobs"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-200 ${activeTab === 'jobs' && 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-2 border-l-[#c1c1c1]'}`}>
+                    <div onClick={() => { setActiveTab("jobs"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-300 border-l-2 ${activeTab === 'jobs' ? 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-[#c1c1c1]' : 'border-l-[#1a1a1a]'}`}>
                         <BackpackIcon className='w-6 h-auto' />
                         <span>Jobs</span>
                     </div>
 
                     {userData?.type === 'admin' && (
-                        <div onClick={() => { setActiveTab("extra"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-200 ${activeTab === 'extra' && 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-2 border-l-[#c1c1c1]'}`}>
+                        <div onClick={() => { setActiveTab("extra"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-300 border-l-2 ${activeTab === 'extra' ? 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-[#c1c1c1]' : 'border-l-[#1a1a1a]'}`}>
                             <GlobeIcon className='w-6 h-auto' />
                             <span>Note</span>
                         </div>

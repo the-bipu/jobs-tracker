@@ -504,7 +504,7 @@ const JobsTab = ({ userData }: any) => {
     }
 
     return (
-        <div className="space-y-6 p-5">
+        <div className="space-y-6 p-5 overflow-y-auto h-full">
             <div className='w-full flex flex-col gap-5'>
                 <div className='w-full flex md:flex-row flex-col md:items-center items-start gap-3 justify-between'>
                     <div className='flex flex-col'>

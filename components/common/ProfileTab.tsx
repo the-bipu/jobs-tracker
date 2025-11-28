@@ -88,7 +88,7 @@ const ProfileTab = ({ userData, fetchUserData }: ProfileTabProps) => {
     };
 
     return (
-        <div className="space-y-6 p-5">
+        <div className="space-y-6 p-5 overflow-y-auto h-full">
             <div className='w-full flex flex-col gap-5'>
                 <div className='flex flex-col'>
                     <h4 className="text-xl font-medium">Personal Information</h4>
