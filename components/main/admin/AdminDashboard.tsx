@@ -5,6 +5,7 @@ import ProfileTab from '../common/ProfileTab';
 import JobsTab from '../common/JobsTab';
 import UsersTab from './UsersTab';
 import AdminTab from './AdminTab';
+import CompanyTab from '../common/CompanyTab';
 
 const AdminDashboard = ({ userData, activeTab, fetchUserData }: any) => {
     return (
@@ -19,6 +20,10 @@ const AdminDashboard = ({ userData, activeTab, fetchUserData }: any) => {
 
                 {activeTab === 'jobs' && (
                     <JobsTab userData={userData} />
+                )}
+
+                {activeTab === 'company' && (
+                    <CompanyTab userData={userData} />
                 )}
 
                 {activeTab === 'users' && (
