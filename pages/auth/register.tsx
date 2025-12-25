@@ -13,8 +13,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 import Link from 'next/link';
 import Head from 'next/head';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import Loader from '@/components/common/Loader';
-import SessionExist from '@/components/common/SessionExist';
+import Loader from '@/components/main/loader/Loader';
+import SessionExist from '@/components/main/others/SessionExist';
 
 interface studentFormData {
     name: string

@@ -11,9 +11,9 @@ import { FaGoogle } from "react-icons/fa";
 import Head from "next/head";
 import { LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { toast } from "sonner";
-import Loader from "@/components/common/Loader";
+import Loader from "@/components/main/loader/Loader";
 import Link from "next/link";
-import SessionExist from "@/components/common/SessionExist";
+import SessionExist from "@/components/main/others/SessionExist";
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import Image from "next/image";

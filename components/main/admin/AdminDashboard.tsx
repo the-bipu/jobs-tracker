@@ -1,8 +1,8 @@
 import React from 'react';
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
-import ProfileTab from './ProfileTab';
-import JobsTab from './JobsTab';
+import Sidebar from '../others/Sidebar';
+import Topbar from '../others/Topbar';
+import ProfileTab from '../common/ProfileTab';
+import JobsTab from '../common/JobsTab';
 import UsersTab from './UsersTab';
 import AdminTab from './AdminTab';
 

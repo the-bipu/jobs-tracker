@@ -1,7 +1,7 @@
 'use client';
 
-import AdminDashboard from '@/components/common/AdminDashboard';
-import UserDashboard from '@/components/common/UserDashboard';
+import AdminDashboard from '@/components/main/admin/AdminDashboard';
+import UserDashboard from '@/components/main/users/UserDashboard';
 import { UserContext } from '@/context/userContext'
 import Head from 'next/head';
 import Link from 'next/link';

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { signOut } from 'next-auth/react';
 import { UserContext } from '@/context/userContext';
-import { AvatarIcon, BackpackIcon, DiscordLogoIcon, ExitIcon, GlobeIcon } from '@radix-ui/react-icons';
+import { AvatarIcon, BackpackIcon, CubeIcon, DiscordLogoIcon, ExitIcon, GlobeIcon } from '@radix-ui/react-icons';
 import { toast } from 'sonner';
 
 const Sidebar = () => {
@@ -42,6 +42,11 @@ const Sidebar = () => {
                     <div onClick={() => { setActiveTab("jobs"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-300 border-l-2 ${activeTab === 'jobs' ? 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-[#c1c1c1]' : 'border-l-[#1a1a1a]'}`}>
                         <BackpackIcon className='w-6 h-auto' />
                         <span>Track Jobs</span>
+                    </div>
+
+                    <div onClick={() => { setActiveTab("company"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-300 border-l-2 ${activeTab === 'company' ? 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-[#c1c1c1]' : 'border-l-[#1a1a1a]'}`}>
+                        <CubeIcon className='w-6 h-auto' />
+                        <span>Companies</span>
                     </div>
 
                     {userData?.type === 'admin' && (
