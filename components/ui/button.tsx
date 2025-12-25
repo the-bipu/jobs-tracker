@@ -24,6 +24,10 @@ const buttonVariants = cva(
           "bg-yellow-400 text-yellow-foreground shadow-xs hover:bg-yellow-300",
         greenry:
           "bg-green-800 text-white shadow-xs hover:bg-green-700",
+        outlineBlack:
+          "bg-black text-white rounded-full border-2 border-black montserrat",
+        outlineWhite:
+          "rounded-full border-2 border-black montserrat",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
