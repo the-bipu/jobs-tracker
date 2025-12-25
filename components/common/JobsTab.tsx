@@ -79,7 +79,6 @@ interface Job extends JobFormValues {
 
 const JobsTab = ({ userData }: any) => {
     const [jobs, setJobs] = useState<Job[]>([]);
-    const [loading, setLoading] = useState(false);
     const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
     const [selectedJob, setSelectedJob] = useState<Job | null>(null);
@@ -90,6 +89,12 @@ const JobsTab = ({ userData }: any) => {
     const [statusFilter, setStatusFilter] = useState<string>('all');
     const [jobTypeFilter, setJobTypeFilter] = useState<string>('all');
     const [sourceFilter, setSourceFilter] = useState<string>('all');
+
+    // International Loader Association
+    const [loading, setLoading] = useState(false);
+    const [isCreating, setIsCreating] = useState(false);
+    const [isUpdating, setIsUpdating] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const form = useForm<JobFormValues>({
         resolver: zodResolver(jobSchema),
@@ -137,6 +142,8 @@ const JobsTab = ({ userData }: any) => {
     };
 
     const onCreateSubmit = async (values: JobFormValues) => {
+        setIsCreating(true);
+
         try {
             const response = await fetch('/api/jobs/create', {
                 method: 'POST',
@@ -149,19 +156,24 @@ const JobsTab = ({ userData }: any) => {
 
             if (!response.ok) throw new Error('Failed to create job');
 
+            const newJob = await response.json();
+            setJobs(prevJobs => [newJob, ...prevJobs]);
+
             toast.success('Job application added successfully!');
             form.reset();
             setIsCreateDialogOpen(false);
-            fetchJobs();
         } catch (error) {
             toast.error('Failed to create job application');
             console.error(error);
+        } finally {
+            setIsCreating(false);
         }
     };
 
     const onEditSubmit = async (values: JobFormValues) => {
         if (!selectedJob) return;
 
+        setIsUpdating(true);
         try {
             const response = await fetch(`/api/jobs/${selectedJob._id}`, {
                 method: 'PATCH',
@@ -171,13 +183,21 @@ const JobsTab = ({ userData }: any) => {
 
             if (!response.ok) throw new Error('Failed to update job');
 
+            const updatedJob = await response.json();
+            setJobs(prevJobs =>
+                prevJobs.map(job =>
+                    job._id === selectedJob._id ? updatedJob : job
+                )
+            );
+
             toast.success('Job application updated successfully!');
             setIsEditDialogOpen(false);
             setSelectedJob(null);
-            fetchJobs();
         } catch (error) {
             toast.error('Failed to update job application');
             console.error(error);
+        } finally {
+            setIsUpdating(false);
         }
     };
 
@@ -204,6 +224,7 @@ const JobsTab = ({ userData }: any) => {
     const handleDelete = async () => {
         if (!deleteJobId) return;
 
+        setIsDeleting(true);
         try {
             const response = await fetch(`/api/jobs/${deleteJobId}`, {
                 method: 'DELETE',
@@ -211,12 +232,15 @@ const JobsTab = ({ userData }: any) => {
 
             if (!response.ok) throw new Error('Failed to delete job');
 
+            setJobs(prevJobs => prevJobs.filter(job => job._id !== deleteJobId));
+
             toast.success('Job application deleted successfully!');
             setDeleteJobId(null);
-            fetchJobs();
         } catch (error) {
             toast.error('Failed to delete job application');
             console.error(error);
+        } finally {
+            setIsDeleting(false);
         }
     };
 
@@ -503,8 +527,12 @@ const JobsTab = ({ userData }: any) => {
                     )}
                 />
 
-                <Button type="submit" className="w-full">
-                    {isEdit ? 'Update Job Application' : 'Create Job Application'}
+                <Button type="submit" className="w-full" disabled={isEdit ? isUpdating : isCreating}>
+                    {isEdit ? (
+                        isUpdating ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Updating...</> : 'Update Job Application'
+                    ) : (
+                        isCreating ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Creating...</> : 'Create Job Application'
+                    )}
                 </Button>
             </form>
         </Form>
@@ -712,8 +740,8 @@ const JobsTab = ({ userData }: any) => {
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
                                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                    <AlertDialogAction onClick={handleDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
-                                        Delete
+                                    <AlertDialogAction onClick={handleDelete} disabled={isDeleting} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                                        {isDeleting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Deleting...</> : 'Delete'}
                                     </AlertDialogAction>
                                 </AlertDialogFooter>
                             </AlertDialogContent>
