@@ -75,10 +75,10 @@ const Index = () => {
 
                         <div className='w-full md:px-16 px-4 h-auto flex flex-col items-center justify-center mb-12'>
                             <div className='md:w-9/12 w-full flex flex-col items-center justify-center text-center'>
-                                <Button variant={'outlineWhite'} className='md:text-lg text-base px-8 py-5 font-medium cursor-pointer md:mb-8 mb-6'>Introducing HuntHive</Button>
+                                <Button variant={'outlineWhite'} className='md:text-lg text-base px-8 py-5 font-medium cursor-pointer md:mb-8 mb-6'>Introducing KarmaPath</Button>
                                 <h1 className='md:max-w-4xl w-full md:text-6xl text-3xl font-bold text-center md:mb-10 mb-6 roboto-mono'>Your Ultimate Job Tracking Platform</h1>
                                 <p className='md:max-w-3xl w-11/12 md:text-xl text-base text-center text-[#777] font-normal mb-8 roboto-mono'>
-                                    HuntHive is your personal job search companion, built to streamline applications, track progress, and turn chaos into clarity on your path to employment.                                </p>
+                                    KarmaPath is your personal job search companion, built to streamline applications, track progress, and turn chaos into clarity on your path to employment.                                </p>
                                 <div className='w-auto flex md:flex-row flex-col md:gap-3 gap-4'>
                                     {authenticated && userData ? (
                                         <Link href="/dashboard">

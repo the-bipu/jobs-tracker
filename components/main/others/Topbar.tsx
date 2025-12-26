@@ -20,7 +20,11 @@ const Topbar = () => {
                 <GearIcon className='md:flex hidden w-5 h-5 cursor-pointer' />
 
                 <div className='flex flex-row ml-3 gap-2 items-center justify-center'>
-                    <Image src="/profile.jpg" alt='' width={40} height={40} className='rounded-full' />
+                    {userData?.gender === 'male' ? (
+                        <Image src="/profile-male.jpg" alt='' width={40} height={40} className='rounded-full' />
+                    ) : (
+                        <Image src="/profile-female.jpg" alt='' width={40} height={40} className='rounded-full' />
+                    )}
                     <div className='flex flex-row gap-1 items-center justify-center'>
                         <span className='font-normal'>{userData?.name}</span>
                         <CaretDownIcon className='w-6 h-6 cursor-pointer' />
