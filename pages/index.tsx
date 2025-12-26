@@ -30,8 +30,8 @@ const Index = () => {
         <React.Fragment>
             <Head>
                 <link rel="icon" href="/favicon.png" type="image/png" sizes="70x70" />
-                <title>HuntHive – Organize Your Career Journey</title>
-                <meta name="description" content="Stay organized and boost your job hunt with HuntHive — the smart way to log applications and follow up." />
+                <title>KarmaPath – Organize Your Career Journey</title>
+                <meta name="description" content="Stay organized and boost your job hunt with KarmaPath — the smart way to log applications and follow up." />
             </Head>
 
             {loading ? (
@@ -43,7 +43,7 @@ const Index = () => {
 
                         <div className='w-full flex flex-row gap-4 text-lg font-medium items-center justify-between py-4 mb-8 md:px-16 px-4'>
                             <Link href='/' className='cursor-pointer'>
-                                <Image src='/hunthive.svg' alt='logo' width={200} height={80} className='w-40' />
+                                <Image src='/karmapath-dark.svg' alt='logo' width={200} height={80} className='w-40' />
                             </Link>
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>

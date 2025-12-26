@@ -126,8 +126,8 @@ const Register = () => {
         <React.Fragment>
             <Head>
                 <link rel="icon" href="/favicon.png" type="image/png" sizes="70x70" />
-                <title>Join HuntHive – Start Organizing Your Job Hunt</title>
-                <meta name="description" content="Create your HuntHive account and begin managing and tracking all your job applications in one smart, organized place." />
+                <title>Join KarmaPath – Start Organizing Your Job Hunt</title>
+                <meta name="description" content="Create your KarmaPath account and begin managing and tracking all your job applications in one smart, organized place." />
             </Head>
 
             <div className="w-full md:fixed relative md:h-screen h-auto flex flex-col items-center justify-start md:overflow-hidden overflow-auto">
@@ -136,7 +136,7 @@ const Register = () => {
 
                 <div className='w-full flex flex-row gap-4 text-lg font-medium items-center justify-between py-4 mb-8 md:px-16 px-4'>
                     <Link href='/' className='cursor-pointer'>
-                        <Image src='/hunthive.svg' alt='logo' width={200} height={80} className='w-40' />
+                        <Image src='/karmapath-dark.svg' alt='logo' width={200} height={80} className='w-40' />
                     </Link>
                     <Image src='/menu.svg' alt='logo' width={200} height={80} className='w-6 cursor-pointer' />
                 </div>
