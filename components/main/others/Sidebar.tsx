@@ -46,7 +46,12 @@ const Sidebar = () => {
 
                     <div onClick={() => { setActiveTab("company"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-300 border-l-2 ${activeTab === 'company' ? 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-[#c1c1c1]' : 'border-l-[#1a1a1a]'}`}>
                         <CubeIcon className='w-6 h-auto' />
-                        <span>Companies</span>
+                        <span>Track Companies</span>
+                    </div>
+
+                    <div onClick={() => { setActiveTab("list"); setSideBar(false) }} className={`text-[#606060] flex flex-row gap-3 items-center rounded-tr rounded-br justify-start text-lg py-1 px-3 cursor-pointer transition-all duration-300 border-l-2 ${activeTab === 'list' ? 'bg-[#2D2D2E] hover:bg-[#3A3A3B] text-white border-l-[#c1c1c1]' : 'border-l-[#1a1a1a]'}`}>
+                        <CubeIcon className='w-6 h-auto' />
+                        <span>Companies List</span>
                     </div>
 
                     {userData?.type === 'admin' && (

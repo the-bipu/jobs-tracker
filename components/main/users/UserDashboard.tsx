@@ -4,6 +4,7 @@ import Topbar from '../others/Topbar';
 import ProfileTab from '../common/ProfileTab';
 import JobsTab from '../common/JobsTab';
 import CompanyTab from '../common/CompanyTab';
+import CompanyList from '../common/ComanyList';
 
 const UserDashboard = ({ userData, activeTab, fetchUserData }: any) => {
     return (
@@ -22,6 +23,10 @@ const UserDashboard = ({ userData, activeTab, fetchUserData }: any) => {
 
                 {activeTab === 'company' && (
                     <CompanyTab userData={userData} />
+                )}
+
+                {activeTab === 'list' && (
+                    <CompanyList />
                 )}
             </div>
         </div>
