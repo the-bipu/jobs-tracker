@@ -14,8 +14,8 @@ const dashboard = () => {
         <React.Fragment>
             <Head>
                 <link rel="icon" href="/favicon.png" type="image/png" sizes="70x70" />
-                <title>KarmaPath Dashboard – Track, Review, and Manage Applications</title>
-                <meta name="description" content="View, manage, and update all your job applications from your KarmaPath dashboard — stay in control of your career search with organized insights." />
+                <title>JobArc Dashboard – Track, Review, and Manage Applications</title>
+                <meta name="description" content="View, manage, and update all your job applications from your JobArc dashboard — stay in control of your career search with organized insights." />
             </Head>
 
             {authenticated ? (

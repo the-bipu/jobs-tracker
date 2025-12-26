@@ -91,8 +91,8 @@ const Login = () => {
         <React.Fragment>
             <Head>
                 <link rel="icon" href="/favicon.png" type="image/png" sizes="70x70" />
-                <title>Login to KarmaPath – Continue Your Career Tracking</title>
-                <meta name="description" content="Access your KarmaPath dashboard to keep tracking job applications, stay organized, and move closer to your next career opportunity." />
+                <title>Login to JobArc – Continue Your Career Tracking</title>
+                <meta name="description" content="Access your JobArc dashboard to keep tracking job applications, stay organized, and move closer to your next career opportunity." />
             </Head>
 
             <div className="w-full md:fixed relative md:h-screen h-auto flex flex-col items-center justify-start md:overflow-hidden overflow-auto">
@@ -101,7 +101,7 @@ const Login = () => {
 
                 <div className='w-full flex flex-row gap-4 text-lg font-medium items-center justify-between py-4 mb-8 md:px-16 px-4'>
                     <Link href='/' className='cursor-pointer'>
-                        <Image src='/karmapath-dark.svg' alt='logo' width={200} height={80} className='w-40' />
+                        <Image src='/jobarc-dark.svg' alt='logo' width={200} height={80} className='w-40' />
                     </Link>
                     <Image src='/menu.svg' alt='logo' width={200} height={80} className='w-6 cursor-pointer' />
                 </div>

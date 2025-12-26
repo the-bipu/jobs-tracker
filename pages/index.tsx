@@ -30,8 +30,8 @@ const Index = () => {
         <React.Fragment>
             <Head>
                 <link rel="icon" href="/favicon.png" type="image/png" sizes="70x70" />
-                <title>KarmaPath – Organize Your Career Journey</title>
-                <meta name="description" content="Stay organized and boost your job hunt with KarmaPath — the smart way to log applications and follow up." />
+                <title>JobArc – Organize Your Career Journey</title>
+                <meta name="description" content="Stay organized and boost your job hunt with JobArc — the smart way to log applications and follow up." />
             </Head>
 
             {loading ? (
@@ -43,7 +43,7 @@ const Index = () => {
 
                         <div className='w-full flex flex-row gap-4 text-lg font-medium items-center justify-between py-4 mb-8 md:px-16 px-4'>
                             <Link href='/' className='cursor-pointer'>
-                                <Image src='/karmapath-dark.svg' alt='logo' width={200} height={80} className='w-40' />
+                                <Image src='/jobarc-dark.svg' alt='logo' width={200} height={80} className='w-40' />
                             </Link>
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
@@ -75,10 +75,10 @@ const Index = () => {
 
                         <div className='w-full md:px-16 px-4 h-auto flex flex-col items-center justify-center mb-12'>
                             <div className='md:w-9/12 w-full flex flex-col items-center justify-center text-center'>
-                                <Button variant={'outlineWhite'} className='md:text-lg text-base px-8 py-5 font-medium cursor-pointer md:mb-8 mb-6'>Introducing KarmaPath</Button>
+                                <Button variant={'outlineWhite'} className='md:text-lg text-base px-8 py-5 font-medium cursor-pointer md:mb-8 mb-6'>Introducing JobArc</Button>
                                 <h1 className='md:max-w-4xl w-full md:text-6xl text-3xl font-bold text-center md:mb-10 mb-6 roboto-mono'>Your Ultimate Job Tracking Platform</h1>
                                 <p className='md:max-w-3xl w-11/12 md:text-xl text-base text-center text-[#777] font-normal mb-8 roboto-mono'>
-                                    KarmaPath is your personal job search companion, built to streamline applications, track progress, and turn chaos into clarity on your path to employment.                                </p>
+                                    JobArc is your personal job search companion, built to streamline applications, track progress, and turn chaos into clarity on your path to employment.                                </p>
                                 <div className='w-auto flex md:flex-row flex-col md:gap-3 gap-4'>
                                     {authenticated && userData ? (
                                         <Link href="/dashboard">
